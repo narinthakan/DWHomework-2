@@ -1,0 +1,32 @@
+<div
+        x-data="{ count: 0 }"
+        x-init="(() => {
+            // Create WebSocket connection
+            const ws = new WebSocket('ws://' + window.location.host + '/ws/events/');
+            
+            // When a message is received from the WebSocket server
+            ws.onopen = () => {
+                console.log('WebSocket connection established');
+            };
+            
+            ws.onerror = (error) => {
+                console.log('WebSocket error:', error);
+            };
+
+            ws.onmessage = event => {
+                const data = JSON.parse(event.data);  // Parse the incoming data
+                count = data.count;  // Update the count with the value received
+            };
+        })()"
+    >
+        <p>จำนวนเหตุการณ์ล่าสุด: <span x-text="count">0</span></p> <!-- Display the count -->
+    </div>
+
+    <!-- Example HTMX for other dynamic content updates (optional) -->
+    <div
+        hx-get="/some-endpoint"  <!-- Replace with your actual endpoint -->
+    ></div>
+
+    <div id="some-container">
+        <!-- The updated content will go here -->
+    </div>
