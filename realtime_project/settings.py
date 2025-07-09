@@ -19,6 +19,8 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "channels",  # Channels app for real-time communication
     "realtime",  # Your app for real-time processing
+    "hw04",  # Your hw04 app
+    
 ]
 WSGI_APPLICATION = "realtime_project.wsgi.application"
 MIDDLEWARE = [

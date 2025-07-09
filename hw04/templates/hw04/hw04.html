@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cell Towers Data</title>
+</head>
+<body>
+    <h1>Cell Towers Data</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Radio</th>
+                <th>MCC</th>
+                <th>Network</th>
+                <th>Area</th>
+                <th>Cell</th>
+                <th>Unit</th>
+                <th>Longitude</th>
+                <th>Latitude</th>
+                <th>Range</th>
+                <th>Samples</th>
+                <th>Changeable</th>
+                <th>Created</th>
+                <th>Updated</th>
+                <th>Average Signal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in data %}
+            <tr>
+                <td>{{ row.radio }}</td>
+                <td>{{ row.mcc }}</td>
+                <td>{{ row.net }}</td>
+                <td>{{ row.area }}</td>
+                <td>{{ row.cell }}</td>
+                <td>{{ row.unit }}</td>
+                <td>{{ row.lon }}</td>
+                <td>{{ row.lat }}</td>
+                <td>{{ row.range }}</td>
+                <td>{{ row.samples }}</td>
+                <td>{{ row.changeable }}</td>
+                <td>{{ row.created }}</td>
+                <td>{{ row.updated }}</td>
+                <td>{{ row.averageSignal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

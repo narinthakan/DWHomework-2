@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  django-app:
+    build: .
+    container_name: django-app
+    ports:
+      - "8000:8000"  # Django ใช้พอร์ต 8000
+    volumes:
+      - .:/app
+    depends_on:
+      - clickhouse
+    environment:
+      - DJANGO_SETTINGS_MODULE=realtime_project.settings
+    command: >
+      bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+
+  clickhouse:
+    image: yandex/clickhouse-server:latest
+    container_name: clickhouse-server
+    ports:
+      - "9000:9000"  # ClickHouse ใช้พอร์ต 9000
+      - "8123:8123"  # HTTP interface for ClickHouse
+    volumes:
+      - clickhouse-data:/var/lib/clickhouse
+    environment:
+      - CLICKHOUSE_DB=your_database_name
+    restart: always
+
+volumes:
+  clickhouse-data:
+    driver: local
