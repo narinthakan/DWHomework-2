@@ -20,3 +20,14 @@ python manage.py migrate
 python manage.py runserver
 
 
+ข้อมูลที่ใช้ Geo Data using the Cell Tower Dataset
+
+สร้างฐานข้อมูลเพื่อทำการรองรับข้อมูลใน Clickhouse
+
+ทำการ insert ข้อมูลผ่านคำสั่ง https://clickhouse.com/docs/getting-started/example-datasets/cell-towers
+
+เมื่อทำการเพิ่มข้อมูลเสร็จสิ้น ให้ทำการเปิด server clickhouse ด้วยคำสั่ง clickhouse server 
+
+สร้างไฟล์ views.py เพื่อทำการเชื่อมต่อและดึงข้อมูลมาแสดงผล ด้วย html hw04.html
+
+จากนั้น รันคำสั่ง python manage.py runserver
