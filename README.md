@@ -19,7 +19,7 @@ python manage.py migrate
 รันเซิร์ฟเวอร์ Django
 python manage.py runserver
 
-
+#นำข้อมูลเข้า clickhouse 
 ข้อมูลที่ใช้ Geo Data using the Cell Tower Dataset
 
 สร้างฐานข้อมูลเพื่อทำการรองรับข้อมูลใน Clickhouse
