@@ -20,6 +20,8 @@ python manage.py migrate
 python manage.py runserver
 
 #นำข้อมูลเข้า clickhouse 
+ทำการเลือกBranches hw04
+
 ข้อมูลที่ใช้ Geo Data using the Cell Tower Dataset
 
 สร้างฐานข้อมูลเพื่อทำการรองรับข้อมูลใน Clickhouse
