@@ -1,3 +1,81 @@
+
+Homework 05:
+## ติดตั้งและเปิดใช้งาน ClickHouse
+
+1. ติดตั้ง ClickHouse ด้วย Docker:
+   ```bash
+   docker run -d --name clickhouse-server -p 9000:9000 -p 8123:8123 clickhouse/clickhouse-server
+
+2.เข้าใช้งาน ClickHouse Client:
+docker exec -it clickhouse-server clickhouse-client
+
+##นำเข้าข้อมูลจาก HW04
+-ดาวน์โหลดไฟล์ cell_towers.csv.xz:
+ https://datasets.clickhouse.com/cell_towers.csv.xz
+-สร้างตาราง:
+CREATE TABLE cell_towers (
+  id UInt32,
+  radio String,
+  mcc UInt32,
+  net UInt32,
+  area UInt32,
+  cell UInt32,
+  unit String,
+  lon Float64,
+  lat Float64,
+  range UInt32,
+  samples UInt32,
+  changeable UInt8,
+  created DateTime,
+  updated DateTime,
+  averageSignal Float32
+) ENGINE = MergeTree() ORDER BY id;
+
+3.นำเข้าไฟล์:
+clickhouse-client --query="INSERT INTO cell_towers FORMAT CSVWithNames" < cell_towers.csv
+
+##ติดตั้งและเปิดใช้งาน Superset
+1.Clone Superset จาก GitHub:
+git clone https://github.com/apache/superset.git
+cd superset
+
+2.สร้าง virtual environment และติดตั้ง dependencies:
+python -m venv superset-env
+.\superset-env\Scripts\activate
+pip install -r requirements/integration.clickhouse.txt
+
+3.รัน Superset:
+docker compose -f docker-compose-image-tag.yml up
+
+##เชื่อม Superset กับ ClickHouse
+1.ไปที่ Settings > Database Connections
+2.เพิ่มการเชื่อมต่อด้วย URL:
+clickhouse+native://default:@localhost:9000/default
+
+##ไฟล์ cell_towers.csv.xz มีขนาด เกิน 100MB ซึ่งเกินขีดจำกัดของ GitHub
+จึง ไม่สามารถอัปโหลดไว้ใน Repository นี้ได้ค่ะ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <!--
 Licensed to the Apache Software Foundation (ASF) under one
 or more contributor license agreements.  See the NOTICE file
