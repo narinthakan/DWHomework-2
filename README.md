@@ -55,8 +55,11 @@ docker compose -f docker-compose-image-tag.yml up
 
 
 ##เชื่อม Superset กับ ClickHouse
+
 1.ไปที่ Settings > Database Connections
+
 2.เพิ่มการเชื่อมต่อด้วย URL:
+
 clickhouse+native://default:@localhost:9000/default
 
 ##ไฟล์ cell_towers.csv.xz มีขนาด เกิน 100MB ซึ่งเกินขีดจำกัดของ GitHub
