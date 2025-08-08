@@ -11,8 +11,10 @@ docker exec -it clickhouse-server clickhouse-client
 
 ##นำเข้าข้อมูลจาก HW04
 -ดาวน์โหลดไฟล์ cell_towers.csv.xz:
+
  https://datasets.clickhouse.com/cell_towers.csv.xz
 -สร้างตาราง:
+
 CREATE TABLE cell_towers (
   id UInt32,
   radio String,
@@ -32,20 +34,25 @@ CREATE TABLE cell_towers (
 ) ENGINE = MergeTree() ORDER BY id;
 
 3.นำเข้าไฟล์:
+
 clickhouse-client --query="INSERT INTO cell_towers FORMAT CSVWithNames" < cell_towers.csv
 
 ##ติดตั้งและเปิดใช้งาน Superset
+
 1.Clone Superset จาก GitHub:
 git clone https://github.com/apache/superset.git
 cd superset
+
 
 2.สร้าง virtual environment และติดตั้ง dependencies:
 python -m venv superset-env
 .\superset-env\Scripts\activate
 pip install -r requirements/integration.clickhouse.txt
 
+
 3.รัน Superset:
 docker compose -f docker-compose-image-tag.yml up
+
 
 ##เชื่อม Superset กับ ClickHouse
 1.ไปที่ Settings > Database Connections
